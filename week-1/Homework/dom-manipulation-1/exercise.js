@@ -15,8 +15,10 @@ Write JavaScript below that logs:
     --> should log a list of nodes with a length of 3
 
 */
+
+
 const allElementP = document.querySelectorAll('p');
-console.log(allElementP[0,5]);
+console.log(allElementP);
 
 const siteHeader = document.querySelector('.site-header');
 console.log(siteHeader);
@@ -24,8 +26,10 @@ console.log(siteHeader);
 const jumbotronText = document.querySelector('#jumbotron-text');
 console.log(jumbotronText);
 
-const primaryContent = document.querySelectorAll('.primary-content');
-console.log(primaryContent);
+const primaryContent = document.querySelector('.primary-content');
+const allPInPrimaryContent = primaryContent.querySelectorAll('p');
+
+console.log(`allPInPrimaryContent: ${JSON.stringify(allPInPrimaryContent)}`);
 
 /*
 Task 2
@@ -48,13 +52,9 @@ Write JavaScript below that changes the background colour of the page when the '
 */
 const changeColorButton = document.querySelector('#bgrChangeBtn');
 
-function changeColor (color) {
-    document.body.style.background = color;
-}
-
 changeColorButton.addEventListener("click", (event) => {
     event.preventDefault();
-    console.log(changeColor("yellow"));
+    document.body.style.background = "yellow";
 });
 
 /*
@@ -65,10 +65,14 @@ When a user clicks the ‘Add some text’ button, a new paragraph should be add
 */
 
 const addTextButton = document.querySelector('#addTextBtn');
+const learnMoreTag = document.querySelector('#mainArticles');
 
 addTextButton.addEventListener("click", (event) => {
     event.preventDefault();
-    addTextButton.innerText = "LEARN MORE";
+    const newPar = document.createElement("p")
+    const text = document.createTextNode("This is a new paragraf");
+    newPar.appendChild(text);
+    learnMoreTag.appendChild(newPar);
 });
 
 /*
@@ -79,16 +83,22 @@ When the 'Larger links!' button is clicked, the text of all links on the page sh
 */
 
 const largerLinksButton = document.querySelector('#largerLinksBtn');
-const allLinks = document.getElementsByClassName('nav-link');
-
-console.log(largerLinksButton);
-console.log("allLinks", allLinks);
+const allLinks = document.querySelectorAll('a');
 
 largerLinksButton.addEventListener("click", (event) => {
     event.preventDefault();
     [...allLinks].forEach((link) => {
-    link.style.fontSize = "20px";
-})
+        const oldSize = link.style.fontSize;
+        let newSize = oldSize.slice(0, -2);
+        newSize = newSize > 20 ? newSize : 20;
+        // newSize > 20 ? newSize : 20; it's the same as:
+        // if (newSize > 20){
+        //     return  newSize;
+        // } else {
+        //     return 20;
+        // }
+        link.style.fontSize = `${newSize * 2}px`;
+    });
 });
 
 
@@ -101,6 +111,17 @@ Using the same function in Task 4,
 When the 'Add' button is clicked, get the text inside the input field and create a new paragraph in the "LEARN MORE" section
 Also clear the text inside the input field
 */
+
+const addArticleButton = document.querySelector('#addArticleBtn');
+const inputPar = document.querySelector("input");
+
+addArticleButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    const newPar = document.createElement("p");
+    const text = document.createTextNode(inputPar.value);
+    newPar.appendChild(text);
+    learnMoreTag.appendChild(newPar);
+});
 
 /*
 Task 7
