@@ -59,6 +59,59 @@ var movies = [
 ];
 
 // create showMovies function
+// let parDiv = document.querySelector("#all-movies")
+// let moviesNumber = document.querySelector("#movies-number")
+
+// function showMovies (arraymovies) {
+//   moviesNumber.textContent =  movies.length;
+//   movies.forEach(function(movie){
+//   let newPar = document.createElement("p");
+//   newP.textContent = `${movies.title} ${movies.director}`
+//   parDiv.appendChild(newPar);
+//   })
+// }
+
+// showMovies(movies);
+
+// create showMovies function
+const allMovies = document.querySelector("#all-movies");
+const moviesNumber = document.querySelector("#movies-number");
+const showMovies = (movieArray) => {
+ moviesNumber.textContent = movies.length;
+ movieArray.forEach( (movie) => {
+  const p = document.createElement ("p");
+  p.textContent = `${movie.title} ${movie.director}`;
+  allMovies.appendChild(p);
+ });
+};
+
+const myMovie = {
+  title: "Spider-Man",
+  director: "Sam Raimi",
+  type: "Sci-Fi",
+  haveWatched: true,
+}
+
+const addMovie = (movie) => {
+  console.log(movies);
+  setTimeout(() => {
+    movies.push(movie);
+    console.log(movies);
+    showMovies(movies);
+  }, 2000);
+};
+
+setTimeout(() => {
+  showMovies(movies);
+}, 1000);
+
+setTimeout(() => {
+  addMovie(myMovie);
+}, 2000);
+
+
+
+showMovies (movies);
 
 
 // create a new movie object for your favorite movie
