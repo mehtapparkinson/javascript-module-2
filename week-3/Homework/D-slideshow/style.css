@@ -1,1 +1,27 @@
 /** Write your CSS in here **/
+
+* {
+    text-align: center;
+    align-items: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#body {
+    background-color: pink;
+    color: purple;
+
+}
+
+button {
+    background-color: pink;
+    border:none;
+    font-size: 20px;
+    cursor: pointer;
+    line-height: 2rem;
+    
+}
+
+#carousel {
+    width: 800;
+    height: 600px;    
+}
