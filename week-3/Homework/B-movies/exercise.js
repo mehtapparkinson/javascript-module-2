@@ -115,6 +115,21 @@ showMovies (movies);
 
 
 // create a new movie object for your favorite movie
+const saveButton = document.querySelector("button")
+const titleInput = document.querySelector(".one")
+const directorInput = document.querySelector(".two")
+const typeInput = document.querySelector(".three")
+const haveWatchedInput = document.querySelector(".four")
 
-
+saveButton.addEventListener("click", event => {
+  event.preventDefault();
+  let myNewMovie = {
+   title: titleInput.value,
+   director: directorInput.value,
+   type: typeInput.value,
+   haveWatched: haveWatchedInput.value,
+  }
+  console.log("myNewMovie",myNewMovie);
+  addMovie(myNewMovie);
+});
 // create addMovies function
